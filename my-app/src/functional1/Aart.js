@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Car2 from './Car2'
 import Cart1 from './Cart1'
+import './aart.css'
 export class Aart extends Component {
   constructor() {
     super()
@@ -12,7 +13,10 @@ export class Aart extends Component {
       ]
     }
   }
-
+add=(data1)=>{
+  data1.qty=data1.qty+1
+  this.setState({ cart: [...this.state.cart]  });
+}
   addcart = (data) => {
     
     console.log(data)
@@ -31,28 +35,31 @@ else{
 }//console.log((this.state.cart))
   }
   removecart=(remov)=>{
-     console.log(remov.qty)
-  let a=this.state.cart
-  var found=a.includes(remov)
-  if(found){
-    var ind=a.indexOf(remov)
-    a.splice(ind,1)
-    remov.qty=1
-    this.setState({...a})
-  }
-
-
+     let removele=this.state.cart.filter((val)=>{
+      return val != remov
+     })
+     if((remov.qty)<1){
+     this.setState({cart:removele})
+     }
+     else{
+      remov.qty=remov.qty-1
+  this.setState({ cart: [...this.state.cart]  });
+     }
   }
   render() {
     return (
-      <div>Aart
+      <div className='container'>Aart
+      <div  className=' parent1'>
         {this.state.product.map((prod, index) =>
           
           <Car2 key={index} prod={prod} addcart={this.addcart}  />
         )}
+        </div>
+        <div className='child1'>
         {this.state.cart.map((prod, index) =>
-          <Cart1 key={index} prod={prod} removecart={this.removecart} />
+          <Cart1 key={index} prod={prod}  add={this.add} removecart={this.removecart} />
         )}
+        </div>
 
       </div>
     )

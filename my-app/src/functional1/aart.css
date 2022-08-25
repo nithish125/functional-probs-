@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    width: 600px;
+    justify-content: space-evenly;
+}
+.parent1{
+    border: 2px solid;
+width: 200px;
+text-align: center;
+}
