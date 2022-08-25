@@ -14,7 +14,7 @@ export class Aart extends Component {
     }
   }
 add=(data1)=>{
-  data1.qty=data1.qty+1
+  data1.qty++
   this.setState({ cart: [...this.state.cart]  });
 }
   addcart = (data) => {
@@ -34,11 +34,17 @@ else{
   this.setState({ cart: [...this.state.cart]  });
 }//console.log((this.state.cart))
   }
+  removecart1=(remov1)=>{
+    let removele=this.state.cart.filter((val)=>{
+     return val != remov1
+    })
+    this.setState({cart:removele})
+  }
   removecart=(remov)=>{
      let removele=this.state.cart.filter((val)=>{
       return val != remov
      })
-     if((remov.qty)<1){
+     if((remov.qty)<=1){
      this.setState({cart:removele})
      }
      else{
@@ -57,7 +63,7 @@ else{
         </div>
         <div className='child1'>
         {this.state.cart.map((prod, index) =>
-          <Cart1 key={index} prod={prod}  add={this.add} removecart={this.removecart} />
+          <Cart1 key={index} prod={prod} removecart1={this.removecart1} add={this.add} removecart={this.removecart} />
         )}
         </div>
 

@@ -7,6 +7,9 @@ export class Cart1 extends Component {
   add(){
     this.props.add(this.props.prod)
   }
+  removecart1(){
+    this.props.removecart1(this.props.prod)
+  }
   render() {
     return (
         <div >
@@ -14,6 +17,7 @@ export class Cart1 extends Component {
         <h2>qty : {this.props.prod.qty}</h2>
         <button onClick={this.removecart.bind(this)}>-</button> 
         <button onClick={this.add.bind(this)}>+</button>
+        <button onClick={this.removecart1.bind(this)}>remove</button>
       </div>
     )
   }
